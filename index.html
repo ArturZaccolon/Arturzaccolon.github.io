@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão de Manutenção</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+            if (isLoggedIn) {
+                window.location.href = "dashboard.html";
+            }
+
+            document.getElementById("loginForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                const nome = document.getElementById("nome").value;
+                const senha = document.getElementById("senha").value;
+
+                if (!nome || !senha) {
+                    alert("Por favor, preencha todos os campos.");
+                    return;
+                }
+
+                localStorage.setItem("userName", nome);
+                localStorage.setItem("isLoggedIn", "true");
+                window.location.href = "dashboard.html";
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Gestão de Manutenção</h1>
+            <p>Controle completo de ativos, ordens de serviço e manutenções preventivas</p>
+        </header>
+        <main>
+            <div class="login-container">
+                <h2>Bem-vindo</h2>
+                <p>Acesse sua conta para continuar</p>
+                <form id="loginForm">
+                    <label for="nome">Nome de usuário</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome de usuário" required>
+                    
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="Digite sua senha" required>
+                    
+                    <button type="submit" class="btn">Entrar</button>
+                </form>
+                <p>Não tem uma conta? <a href="#">Registre-se</a></p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+
+
